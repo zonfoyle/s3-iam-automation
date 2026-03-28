@@ -1,0 +1,9 @@
+aws_region: us-east-1
+
+s3:
+  bucket_name: zonique-secure-bucket-83921
+  file_to_upload: sample.txt
+
+iam:
+  user_name: zonique-s3-user
+  policy_name: zonique-s3-access-policy 
