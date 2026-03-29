@@ -27,6 +27,8 @@ The script is designed to be **idempotent**, meaning it safely reuses existing r
 
 ## 🧱 Architecture
 
+![Architecture](architecture.png)
+
 config.yaml  
 ↓  
 main.py  
