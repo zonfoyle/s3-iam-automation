@@ -44,7 +44,16 @@ def create_bucket(s3_client, bucket_name, region):
 
 
 def upload_file(s3_client, bucket_name, file_name):
-    """Upload a local file to the S3 bucket."""
+    """Upload a local file to the S3 bucket if it is not already present."""
+    try:
+        s3_client.head_object(Bucket=bucket_name, Key=file_name)
+        print(f"File already exists in bucket: {file_name}")
+        return
+    except ClientError as e:
+        error_code = e.response["Error"]["Code"]
+        if error_code not in ["404", "NoSuchKey", "NotFound"]:
+            raise
+
     s3_client.upload_file(file_name, bucket_name, file_name)
     print(f"Uploaded {file_name} to {bucket_name}")
 
